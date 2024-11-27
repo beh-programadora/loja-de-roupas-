@@ -1,0 +1,92 @@
+CREATE DATABASE IF NOT EXISTS lojaderoupas;
+USE lojaderoupas;
+
+CREATE TABLE IF NOT EXISTS  categorias (
+id_categoria INT AUTO_INCREMENT PRIMARY KEY ,
+nome_categoria VARCHAR (50)
+
+);
+
+
+INSERT INTO categorias ( nome_categoria)
+VALUES 
+('camiseta') ,
+('calça') ,
+('short') ,
+('vestido') ; 
+
+CREATE TABLE IF NOT EXISTS produtos (
+id_produto INT AUTO_INCREMENT PRIMARY KEY,
+nome_produto VARCHAR (100) ,
+tamanho_produto VARCHAR (5),
+cor_produto VARCHAR(30),
+preco_produto DECIMAL(10,2),
+estoque_produto DECIMAL (10,2), 
+id_categoria INT ,
+id_fornecedor INT 
+
+);
+
+INSERT INTO produtos ( nome_produto , tamanho_produto , cor_produto , preco_produto ,estoque_produto)
+VALUES 
+('calça jeans' , 36 , 'azul' , 39.00 , 30 ) ,
+('blusa' , 15 , 'branca' , 14.00, 50 ) ,
+('vestido' , 44 , 'verde', 59.00 , 20 );
+
+CREATE TABLE IF NOT EXISTS clientes (
+id_cliente INT AUTO_INCREMENT PRIMARY KEY, 
+nome_cliente VARCHAR (100),
+email_cliente VARCHAR (100),
+telefone_cliente VARCHAR (15) ,
+endereco_cliente VARCHAR (255)
+
+);
+
+INSERT INTO clientes (nome_cliente , email_cliente , telefone_cliente , endereco_cliente )
+VALUES 
+('mariana' , 'mariana.cliente@email.com', 25478930145 , ' rua das laranjas'),
+('luiz' , 'luiz.cliente@email.com' , 48963201574 , 'servidão da felicidade' ),
+('catarina' ,'catarina@email.com' , 54820136974 , 'rua dos caracois');
+
+CREATE TABLE IF NOT EXISTS vendas (
+id_venda INT AUTO_INCREMENT PRIMARY KEY,
+id_cliente INT ,
+data_venda DATETIME , 
+valor_total DECIMAL (10,2)
+
+);
+
+INSERT INTO vendas (data_venda , valor_total)
+VALUES 
+('2024-11-27' , 89.00) ,
+('2024-11-27' , 59.00) ,
+('2024-11-27' ,75.00 );
+
+CREATE TABLE IF NOT EXISTS itensvenda (
+id_item INT AUTO_INCREMENT PRIMARY KEY,
+id_venda INT , 
+id_produto INT ,
+quantidade decimal (10,2) ,
+preco_unitario DECIMAL(10,2)
+
+);
+
+INSERT INTO itensvenda ( quantidade , preco_unitario )
+VALUES 
+(32 , 50) ,
+(60 ,41) ,
+(32 ,54) ;
+
+CREATE TABLE IF NOT EXISTS fornecedores (
+id_fornecedor INT AUTO_INCREMENT PRIMARY KEY ,
+nome_fornecedor VARCHAR (100),
+telefone_fornecedor VARCHAR (15) ,
+endereco_fornecedor VARCHAR (255)
+
+);
+
+INSERT INTO fornecedores (nome_fornecedor , telefone_fornecedor , endereco_fornecedor )
+VALUES 
+('valeria', 25482301762 , 'rua dos milagres' ) ,
+('luisa' , 57893014682 , 'rua da alegria' ),
+('maria' , 562301457893, 'servidao dos amifos');
